@@ -1,18 +1,20 @@
-global RectX = 100
-global Foods =
+rectX = 100
+foods =
     * "chicken"
     * "cake"
     * "chips"
 utf8 = require "utf8"
 
-
+love.load = () ->
+    global font = love.graphics.newFont "../res/fonts/Montserrat/Montserrat-VariableFont_wght.ttf", 15
+    love.graphics.setFont font
 
 love.update = (dt) ->
     if love.keyboard.isDown "right"
-        RectX += 100 * dt
+        rectX += 100 * dt
     else
-        RectX -= 100 * dt
+        rectX -= 100 * dt
 
 love.draw = () ->
-    for i, food in ipairs Foods
-        love.graphics.print food, RectX, 15 * i
+    for i, food in ipairs foods
+        love.graphics.print food, rectX, 15 * i

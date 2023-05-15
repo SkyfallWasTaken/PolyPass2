@@ -43,7 +43,7 @@ rm_force_arg := if os() == "windows" {
 res_symlink_cmd := if os() == "windows" {
   "rm -Force" + " " + build_res_dir + "| cmd /c mklink " + build_res_dir + " " + res_dir + " /J"
 } else {
-  "rm -f " + build_res_dir + " && ln -s " + res_dir + " " + build_res_dir
+  "rm -f " + build_res_dir + " && ln -s ../" + res_dir + " " + build_res_dir
 }
 null := if os() == "windows" {
   "| Out-Null"
