@@ -1,0 +1,26 @@
+# To-dos
+
+- Finish `- love2d.yml`
+  - love
+  - love.audio
+  - love.data
+  - love.event
+  - love.filesystem
+  - love.font
+  - love.graphics
+  - love.image
+  - love.joystick
+  - love.keyboard
+  - love.math
+  - love.mouse
+  - love.physics
+  - love.sound
+  - love.system
+  - love.thread
+  - love.timer
+  - love.touch
+  - love.video
+  - love.window
+  - lua-enet
+  - luasocket
+  - utf8

@@ -1,0 +1,16 @@
+global RectX = 100
+global Foods =
+    * "chicken"
+    * "cake"
+    * "chips"
+utf8 = require "utf8"
+
+love.update = (dt) ->
+    if love.keyboard.isDown "right"
+        RectX += 100 * dt
+    else
+        RectX -= 100 * dt
+
+love.draw = () ->
+    for i, food in ipairs Foods
+        love.graphics.print food, RectX, 15 * i

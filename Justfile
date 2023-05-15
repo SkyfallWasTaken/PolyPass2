@@ -2,16 +2,51 @@
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
 src_dir := "src"
+res_dir := "res"
 build_dir := "build"
-force_arg := if os() == 'windows' {
-                '-Force '
-             } else {
-                '-p'
-             } 
+build_res_dir := if os() == "windows" {
+  build_dir + "\\" + res_dir
+} else {
+  build_dir + "/" + res_dir
+}
 
-moon2lua:
-    mkdir {{build_dir}} {{force_arg}}
-    moonc -t {{build_dir}}/moon-out {{src_dir}}
+run: unpackaged_build
+  love {{build_dir}}/{{src_dir}}
 
 lint:
-    moonc -l {{src_dir}}
+  selene {{build_dir}}/{{src_dir}} --allow-warnings
+
+clean:
+  rm -r {{build_dir}}
+
+[private]
+@unpackaged_build:
+  echo "* Getting build directory..."
+  mkdir {{build_dir}} {{mkdir_force_arg}} {{null}}
+  echo "* Transpiling YueScript files..."
+  @yue -t {{build_dir}}/{{src_dir}} {{src_dir}}
+  echo "* Linting..."
+  just lint
+  echo "* Creating resource symlink..."
+  {{res_symlink_cmd}}
+
+mkdir_force_arg := if os() == "windows" {
+  '-Force'
+} else {
+  '-p'
+}
+rm_force_arg := if os() == "windows" {
+  "-Force"
+} else {
+  "-f"
+}
+res_symlink_cmd := if os() == "windows" {
+  "rm -Force" + " " + build_res_dir + "| cmd /c mklink " + build_res_dir + " " + res_dir + " /J"
+} else {
+  "rm -f " + build_res_dir + " && ln -s " + res_dir + " " + build_res_dir
+}
+null := if os() == "windows" {
+  "| Out-Null"
+} else {
+  "> /dev/null 2>&1"
+}
