@@ -5,6 +5,8 @@ global Foods =
     * "chips"
 utf8 = require "utf8"
 
+
+
 love.update = (dt) ->
     if love.keyboard.isDown "right"
         RectX += 100 * dt
