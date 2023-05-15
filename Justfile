@@ -11,10 +11,7 @@ build_res_dir := if os() == "windows" {
 }
 
 run: unpackaged_build
-  love {{build_dir}}/{{src_dir}}
-
-lint:
-  selene {{build_dir}}/{{src_dir}} --allow-warnings
+  love {{build_dir}}
 
 clean:
   rm -r {{build_dir}}
@@ -24,9 +21,9 @@ clean:
   echo "* Getting build directory..."
   mkdir {{build_dir}} {{mkdir_force_arg}} {{null}}
   echo "* Transpiling YueScript files..."
-  @yue -t {{build_dir}}/{{src_dir}} {{src_dir}}
+  @yue -t {{build_dir}} {{src_dir}}
   echo "* Linting..."
-  just lint
+  selene {{build_dir}} --allow-warnings
   echo "* Creating resource symlink..."
   {{res_symlink_cmd}}
 

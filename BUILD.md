@@ -34,4 +34,8 @@ just clean
 
 ## Linting
 
-TODO
+```
+just unpackaged_build
+```
+
+Won't run the game, but will lint + build.

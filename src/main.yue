@@ -6,7 +6,7 @@ foods =
 utf8 = require "utf8"
 
 love.load = () ->
-    global font = love.graphics.newFont "../res/fonts/Montserrat/Montserrat-VariableFont_wght.ttf", 15
+    global font = love.graphics.newFont "/res/fonts/Montserrat/Montserrat-VariableFont_wght.ttf", 15
     love.graphics.setFont font
 
 love.update = (dt) ->
