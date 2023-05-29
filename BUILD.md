@@ -8,6 +8,7 @@
   - Available at <https://github.com/casey/just>
 - **YueScript**
   - Available at <https://yuescript.org/>
+  - If on Windows, you will need MinGW to install YueScript.
 - **Selene**
   - If you have Cargo, run
 

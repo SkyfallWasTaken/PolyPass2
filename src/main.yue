@@ -2,11 +2,10 @@ rectX = 100
 foods =
     * "chicken"
     * "cake"
-    * "chips"
-utf8 = require "utf8"
+    * "muffinss"
 
 love.load = () ->
-    global font = love.graphics.newFont "/res/fonts/Montserrat/Montserrat-VariableFont_wght.ttf", 15
+    global font = love.graphics.newFont "/res/fonts/Montserrat/static/Montserrat-Black.ttf", 35
     love.graphics.setFont font
 
 love.update = (dt) ->
@@ -17,4 +16,4 @@ love.update = (dt) ->
 
 love.draw = () ->
     for i, food in ipairs foods
-        love.graphics.print food, rectX, 15 * i
+        love.graphics.print food, rectX, 35 * i
